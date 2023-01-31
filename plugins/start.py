@@ -18,7 +18,7 @@ from database.database import add_user, del_user, full_userbase, present_user
 
 
 
-@Bot.on_message(filters.private & filters.command('start') & filters.user(ADMINS))
+@Bot.on_message(filters.command('start') & filters.private & subscribed)
 async def start_command(client: Client, message: Message):
     id = message.from_user.id
     if not await present_user(id):
@@ -88,7 +88,7 @@ async def start_command(client: Client, message: Message):
         reply_markup = InlineKeyboardMarkup(
             [
                 [
-                    InlineKeyboardButton("CLOSE", callback_data = "close")
+                    InlineKeyboardButton("ᴄʟᴏꜱᴇ", callback_data = "close")
                 ]
             ]
         )
@@ -117,7 +117,7 @@ REPLY_ERROR = """<code>Use this command as a replay to any telegram message with
 
     
     
-@Bot.on_message(filters.private & filters.command('start') & filters.user(ADMINS))
+@Bot.on_message(filters.command('start') & filters.private)
 async def not_joined(client: Client, message: Message):
     buttons = [
         [
@@ -131,7 +131,7 @@ async def not_joined(client: Client, message: Message):
             [
                 InlineKeyboardButton(
                     text = 'Try Again',
-                    url = f"https://telegram.me/{client.username}?start={message.command[1]}"
+                    url = f"https://t.me/{client.username}?start={message.command[1]}"
                 )
             ]
         )
