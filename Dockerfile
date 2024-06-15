@@ -1,12 +1,19 @@
+# Dockerfile
 
 FROM python:3.8-slim-buster
-EXPOSE 8000
 
+# Set working directory
 WORKDIR /app
 
+# Copy requirements file and install dependencies
 COPY requirements.txt requirements.txt
-RUN pip3 install -r requirements.txt
+RUN pip install -r requirements.txt
 
+# Copy all files from current directory to /app in container
 COPY . .
 
-CMD python3 main.py
+# Expose port 8000
+EXPOSE 8000
+
+# Command to run the application
+CMD ["python", "main.py"]
