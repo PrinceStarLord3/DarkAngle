@@ -1,6 +1,7 @@
-EXPOSE 8000
 
 FROM python:3.8-slim-buster
+EXPOSE 8000
+
 WORKDIR /app
 
 COPY requirements.txt requirements.txt
